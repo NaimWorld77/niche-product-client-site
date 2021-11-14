@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import img1 from '../../images/login banner2.jpg';
-import { NavLink } from 'react-router-dom';
+import { NavLink ,useHistory} from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
@@ -11,6 +11,8 @@ const Register = () => {
     const [loginData,setLoginData] = useState({});
 
     const {registerUser,user,isLoading,authError} = useAuth();
+
+    const history = useHistory();
 
 
     const handleOnBlur =e =>{
@@ -30,7 +32,7 @@ const Register = () => {
             return
         }
 
-        registerUser(loginData.email,loginData.password)
+        registerUser(loginData.email,loginData.password,history)
  
         e.preventDefault()
     }
@@ -93,7 +95,7 @@ const Register = () => {
 
                     }
                 </Grid>
-                <Grid sx={{mt:8}} item xs={12} md={6}>
+                <Grid sx={{my:4}} item xs={12} md={6}>
                 <img style={{width:'100%',marginRight:'10px'}} src={img1} alt="" />
                 </Grid>
             </Grid>

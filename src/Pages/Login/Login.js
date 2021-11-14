@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import img1 from '../../images/login banner1.jpg';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useLocation,useHistory } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
@@ -11,6 +11,9 @@ const Login = () => {
     const [loginData,setLoginData] = useState({});
 
     const {loginUser,user,isLoading,authError} = useAuth();
+
+    const location = useLocation();
+    const history = useHistory();
 
 
 
@@ -25,7 +28,7 @@ const Login = () => {
 
     const handleOnSubmit =e =>{
 
-        loginUser(loginData.email,loginData.password)
+        loginUser(loginData.email,loginData.password,location,history)
 
         e.preventDefault()
     }

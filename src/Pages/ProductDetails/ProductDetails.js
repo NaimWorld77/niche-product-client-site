@@ -41,7 +41,7 @@ const ProductDetails = () => {
          {showDetails?.description}
         </Typography>
       </CardContent>
-      <Link style={{textDecoration:'none',color:'white'}} to="/Products">
+      <Link style={{textDecoration:'none',color:'white'}} to="/buynow">
           <Button variant="contained">buy now</Button>
           </Link>
           <br />
