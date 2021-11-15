@@ -7,26 +7,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import Navigation from '../Shared/Navigation/Navigation';
 
 const ProductDetails = () => {
 
     const {productKey} = useParams();
     const [details,setDetails] = useState([]);
 
+
     useEffect(()=>{
-        fetch('/products.json')
+        fetch('http://localhost:5000/products')
         .then(res=>res.json())
         .then(data=>setDetails(data))
     },[])
 
-    const showDetails = details.find(detail=>detail.key == productKey);
-    console.log(showDetails);
+    const showDetails = details.find(detail=>detail.key === parseInt(productKey));
+  
 
     return (
+      <>
+      <Navigation></Navigation>
         <Card style={{Width: '100%', padding:'20px' }}>
       <CardMedia
         component="img"
-        style={{width:'auto',margin:'0 auto'}}
+        style={{width:'50%',margin:'30px auto'}}
         image={showDetails?.image}
         alt="green iguana"
       />
@@ -41,7 +45,7 @@ const ProductDetails = () => {
          {showDetails?.description}
         </Typography>
       </CardContent>
-      <Link style={{textDecoration:'none',color:'white'}} to="/buynow">
+      <Link style={{textDecoration:'none',color:'white'}} to={`/buynow/${showDetails?.key}`}>
           <Button variant="contained">buy now</Button>
           </Link>
           <br />
@@ -51,6 +55,7 @@ const ProductDetails = () => {
           </Link>
       
     </Card>
+    </>
     );
 };
 

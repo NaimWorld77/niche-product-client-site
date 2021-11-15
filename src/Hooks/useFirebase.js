@@ -19,11 +19,12 @@ const useFirebase =()=>{
     const registerUser =(email,password,name,history)=>{
       setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then((result) => {
           setAuthError(''); 
 
-              const newUser = {email,displyName:name};
-              setUser(newUser);
+              // const newUser = {email,displyName:name};
+              // setUser(newUser);
+              setUser(result.user)
               //send name to firebase after account creaton
               updateProfile(auth.currentUser, {
                 displayName: name
@@ -58,17 +59,17 @@ const useFirebase =()=>{
           });
           return()=>unsubcribe;
           
-    },[])
+    },[auth])
 
 
     //email password login
     const loginUser =(email,password,location,history)=>{
       setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then((result) => {
           const destination = location?.state?.from ||'/';
           history.replace(destination);
-          
+          setUser(result.user)
               setAuthError('');          
         })
         .catch((error) => {
@@ -82,7 +83,7 @@ const useFirebase =()=>{
     setIsLoading(true);
       signOut(auth)
       .then(()=>{
-
+        setUser({})
       })
       .catch((error)=>{
 

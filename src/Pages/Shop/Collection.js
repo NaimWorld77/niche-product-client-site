@@ -1,6 +1,8 @@
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import Footer from '../Shared/Footer/Footer';
+import Navigation from '../Shared/Navigation/Navigation';
 import SingleCollection from './SingleCollection/SingleCollection';
 
 const Collection = () => {
@@ -8,13 +10,16 @@ const Collection = () => {
     const [collections,setCollections] = useState([]);
 
     useEffect(()=>{
-        fetch('/products.json')
+        fetch('http://localhost:5000/products')
         .then(res=>res.json())
         .then(data=>setCollections(data))
     },[])
     console.log(collections);
 
     return (
+    
+      <>
+      <Navigation></Navigation>
       <Box>
         <Typography sx={{my:8}} variant="h2">
             Our Brand New Collection
@@ -34,6 +39,10 @@ const Collection = () => {
         </Grid>
       </Box>
       </Box>
+      <Footer></Footer>
+
+      </>
+      
       
     );
 };

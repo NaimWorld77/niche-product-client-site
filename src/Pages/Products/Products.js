@@ -3,6 +3,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Product from '../Product/Product';
 import { Typography } from '@mui/material';
+import BuyNow from '../../BuyNow/BuyNow';
+import ProductDetails from '../ProductDetails/ProductDetails';
+import Footer from '../Shared/Footer/Footer';
+import Navigation from '../Shared/Navigation/Navigation';
 
 
 const Products = () => {
@@ -10,12 +14,14 @@ const Products = () => {
     const [products,setProducts] = useState([]);
 
     useEffect(()=>{
-        fetch('/products.json')
+        fetch('http://localhost:5000/products')
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])
 
     return (
+      <>
+      <Navigation></Navigation>
         <Box>
         <Typography sx={{my:8}} variant="h2">
             Our New Products
@@ -27,14 +33,17 @@ const Products = () => {
                     products.slice(0,6).map(product=> <Product
                     key={product.key}
                     product={product}
-                    ></Product>)
-                    
-                }
+                   ></Product>)
+}
+                
           
         </Grid>
       </Box>
       </Box>
-     
+      <Footer></Footer>
+
+      </>
+
     );
 };
 
