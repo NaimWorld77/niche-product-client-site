@@ -21,10 +21,11 @@ const useFirebase =()=>{
         createUserWithEmailAndPassword(auth, email, password)
         .then((result) => {
           setAuthError(''); 
-
-              // const newUser = {email,displyName:name};
-              // setUser(newUser);
               setUser(result.user)
+              const newUser = {email,displyName:name};
+              setUser(newUser);
+              //save user 
+              saveUser(email,name)
               //send name to firebase after account creaton
               updateProfile(auth.currentUser, {
                 displayName: name
@@ -89,6 +90,22 @@ const useFirebase =()=>{
 
       })
       .finally(()=> setIsLoading(false));
+  }
+  //saveing userdata on the database
+  const saveUser = (email,displayName)=>{
+            const user = (email,displayName);
+            fetch('http://localhost:5000/user',{
+
+              method:'POST',
+              headers:{
+                      'content-type':'application/json'         
+              },
+              body:JSON.stringify(user)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+              // console.log(data);
+      })
   }
 
 
