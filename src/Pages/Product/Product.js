@@ -7,8 +7,9 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 const Product = ({product}) => {
+  console.log(product);
 
-    const {name,image,description,key} = product;
+    const {name,image,description,_id} = product;
     return (
         <Grid item xs={4} sm={4} md={4}>
             <Card sx={{ minWidth: 275,height:650 }}>
@@ -26,7 +27,7 @@ const Product = ({product}) => {
           {description}
         </Typography>
       </CardContent>
-      <Link style={{textDecoration:'none',color:'white'}} to={`/product/${key}`}>
+      <Link style={{textDecoration:'none',color:'white'}} to={`/product/${_id}`}>
       <Button variant="contained" color="success" sx={{my:3}}>know more</Button>
       </Link>
 

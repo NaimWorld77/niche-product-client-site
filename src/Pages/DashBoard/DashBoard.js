@@ -6,21 +6,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  useParams,
   useRouteMatch
 } from "react-router-dom";
 import { Button } from '@mui/material';
@@ -30,12 +22,15 @@ import Review from '../DashboardPannel/Review/Review';
 import ManageOrder from '../DashboardPannel/ManageOrder/ManageOrder';
 import AddAProduct from '../DashboardPannel/AddAProduct/AddAProduct';
 import MakeAdmin from '../DashboardPannel/MakeAdmin/MakeAdmin';
+import useAuth from '../../Hooks/useAuth';
+import AdminRoute from '../AdminRoute/AdminRoute';
 
 const drawerWidth = 240;
 
 function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const {admin} = useAuth();
 
   let { path, url } = useRouteMatch();
 
@@ -60,7 +55,10 @@ function DashBoard(props) {
       <Button color="inherit">Review</Button>
       </Link>
       <br />
-      <Link style={{textDecoration:'none',color:'tomato'}} to={`${url}/manageorders`}>
+      {
+        admin &&
+        <Box>
+        <Link style={{textDecoration:'none',color:'tomato'}} to={`${url}/manageorders`}>
       <Button color="inherit">Manage All Orders</Button>
       </Link>
       <br />
@@ -71,6 +69,8 @@ function DashBoard(props) {
       <Link style={{textDecoration:'none',color:'tomato'}} to={`${url}/makeadmin`}>
       <Button color="inherit">Make Admin</Button>
       </Link>
+      </Box>
+      }
       <br />
       <Link style={{textDecoration:'none',color:'white'}} to="/home">
       <Button>Back to Home</Button>
@@ -164,15 +164,15 @@ function DashBoard(props) {
         <Route path={`${path}/review`}>
           <Review></Review>
           </Route>
-        <Route path={`${path}/manageorders`}>
+        <AdminRoute path={`${path}/manageorders`}>
           <ManageOrder></ManageOrder>
-          </Route>
-          <Route path={`${path}/addaproduct`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/addaproduct`}>
             <AddAProduct></AddAProduct>
-          </Route>
-          <Route path={`${path}/makeadmin`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/makeadmin`}>
             <MakeAdmin></MakeAdmin>
-          </Route>
+          </AdminRoute>
         </Switch>
         
       </Box>

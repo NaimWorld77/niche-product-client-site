@@ -7,8 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import Navigation from '../Shared/Navigation/Navigation';
+import useAuth from '../../Hooks/useAuth';
+import { CircularProgress } from '@mui/material';
 
 const ProductDetails = () => {
+
+    const {isLoading} = useAuth();
 
     const {productKey} = useParams();
     const [details,setDetails] = useState([]);
@@ -20,11 +24,14 @@ const ProductDetails = () => {
         .then(data=>setDetails(data))
     },[])
 
-    const showDetails = details.find(detail=>detail.key === parseInt(productKey));
+    const showDetails = details?.find(detail=>detail._id === productKey);
   
 
     return (
       <>
+      {
+      isLoading && <CircularProgress/>
+      }
       <Navigation></Navigation>
         <Card style={{Width: '100%', padding:'20px' }}>
       <CardMedia
@@ -44,7 +51,7 @@ const ProductDetails = () => {
          {showDetails?.description}
         </Typography>
       </CardContent>
-      <Link style={{textDecoration:'none',color:'white'}} to={`/buynow/${showDetails?.key}`}>
+      <Link style={{textDecoration:'none',color:'white'}} to={`/buynow/${showDetails?._id}`}>
           <Button variant="contained">buy now</Button>
           </Link>
           <br />
@@ -54,6 +61,9 @@ const ProductDetails = () => {
           </Link>
       
     </Card>
+    {
+      isLoading && <CircularProgress/>
+      }
     </>
     );
 };

@@ -11,17 +11,19 @@ const BuyNow = () => {
     const {user} = useAuth();
         const {id}=useParams();
         const [details,setDetails] = useState([]);
-const history=useHistory();
+
+        const history=useHistory();
+
         useEffect(()=>{
                 fetch('http://localhost:5000/products')
                 .then(res=>res.json())
                 .then(data=>setDetails(data))
             },[])
         
-            const showDetails = details.find(detail=>detail.key === parseInt(id));
+            const showDetails = details.find(detail=>detail._id === id);
 
-        //     console.log(showDetails?.name);
-        //     console.log(showDetails?.price);
+            console.log(showDetails?.name);
+            console.log(showDetails?.price);
 
 
    const initialInfo = {customarName:user?.displayName,email:user?.email,productPrice:showDetails?.price,productName:showDetails?.name,phone:'',address:''}  
@@ -64,11 +66,6 @@ const history=useHistory();
 e.target.reset();
 history.push('/')
 }
-
-
-
-
-
 
     const bgBuy = {
        background:`url(${img1})`,

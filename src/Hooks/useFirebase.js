@@ -12,6 +12,7 @@ const useFirebase =()=>{
 
     const [isLoading,setIsLoading] =useState(true);
     const [authError,setAuthError] = useState('');
+    const [admin,setAdmin] = useState(false);
 
 
 
@@ -21,8 +22,9 @@ const useFirebase =()=>{
         createUserWithEmailAndPassword(auth, email, password)
         .then((result) => {
           setAuthError(''); 
-              setUser(result.user)
-              const newUser = {email,displyName:name};
+          
+             setUser(result.user)
+              const newUser = {email,displayName:name};
               setUser(newUser);
               //save user 
               saveUser(email,name)
@@ -60,7 +62,17 @@ const useFirebase =()=>{
           });
           return()=>unsubcribe;
           
-    },[auth])
+    },[auth]);
+
+
+    useEffect(()=>{
+      fetch(`http://localhost:5000/user/${user.email}`)
+      .then(res=>res.json())
+      .then(data=>{
+        setAdmin(data.admin)
+      })
+
+    },[user.email])
 
 
     //email password login
@@ -93,7 +105,8 @@ const useFirebase =()=>{
   }
   //saveing userdata on the database
   const saveUser = (email,displayName)=>{
-            const user = (email,displayName);
+
+            const user = {email,displayName};
             fetch('http://localhost:5000/user',{
 
               method:'POST',
@@ -112,6 +125,7 @@ const useFirebase =()=>{
 
     return {
         user,
+        admin,
         registerUser,
         authError,
         logOut,

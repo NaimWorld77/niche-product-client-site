@@ -49,7 +49,7 @@ const MyOrder = () => {
               <TableCell component="th" scope="row">
                 {row.productName}
               </TableCell>
-              <TableCell align="right">{row.productPrice}</TableCell>
+              <TableCell align="right">{row.productPrice}$</TableCell>
               <TableCell align="right">{row.address}</TableCell>
               <TableCell align="right">{row.phone}</TableCell>
               <TableCell align="right">{row.customarName}</TableCell>

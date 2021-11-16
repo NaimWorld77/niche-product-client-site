@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SingleCollection = ({collection}) => {
 
-    const {name,image,description,key} = collection;
+    const {name,image,description,_id} = collection;
     return (
         <Grid item xs={4} sm={4} md={4}>
         <Card sx={{ minWidth: 275 ,height:650}}>
@@ -22,7 +22,7 @@ const SingleCollection = ({collection}) => {
       {description}
     </Typography>
   </CardContent>
-  <Link style={{textDecoration:'none',color:'white'}} to={`/product/${key}`}>
+  <Link style={{textDecoration:'none',color:'white'}} to={`/product/${_id}`}>
       <Button variant="contained" color="success" sx={{my:3}}>know more</Button>
       </Link>
 
