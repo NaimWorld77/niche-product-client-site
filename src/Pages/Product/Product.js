@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 const Product = ({product}) => {
-  console.log(product);
 
     const {name,image,description,_id} = product;
     return (

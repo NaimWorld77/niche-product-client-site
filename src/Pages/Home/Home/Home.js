@@ -11,6 +11,7 @@ const Home = () => {
             <h1>Buy Your Luxury Gold Here</h1>
             <Products></Products>
             
+            
         </div>
     );
 };

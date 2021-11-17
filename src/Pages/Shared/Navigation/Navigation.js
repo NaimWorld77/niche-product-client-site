@@ -38,7 +38,10 @@ const Navigation = () => {
           <Link style={{textDecoration:'none',color:'white'}} to="/collection">
           <Button color="inherit">Collection</Button>
           </Link>
-          <Typography style={{text:'white'}} variant="h5">{user?.name}</Typography>
+          <Link style={{textDecoration:'none',color:'white'}} to="/customerservice">
+          <Button color="inherit">Customer Service</Button>
+          </Link>
+          <Typography variant="h5">{user?.name}</Typography>
           { 
           user?.email ?
           

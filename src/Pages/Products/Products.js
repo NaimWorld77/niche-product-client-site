@@ -5,6 +5,7 @@ import Product from '../Product/Product';
 import { Typography } from '@mui/material';
 import Footer from '../Shared/Footer/Footer';
 import Navigation from '../Shared/Navigation/Navigation';
+import CustomerReview from '../Home/CustomerReview/CustomerReview';
 
 
 const Products = () => {
@@ -38,6 +39,7 @@ const Products = () => {
         </Grid>
       </Box>
       </Box>
+      <CustomerReview></CustomerReview>
       <Footer></Footer>
 
       </>
