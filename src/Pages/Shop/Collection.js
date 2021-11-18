@@ -10,11 +10,10 @@ const Collection = () => {
     const [collections,setCollections] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/products')
+        fetch('https://shrouded-taiga-61011.herokuapp.com/products')
         .then(res=>res.json())
         .then(data=>setCollections(data))
     },[])
-    console.log(collections);
 
     return (
     
@@ -30,7 +29,7 @@ const Collection = () => {
           
                 {
                   collections.map(collection =><SingleCollection
-                  key={collection.key}
+                  key={collection._id}
                   collection={collection}
                   ></SingleCollection>)
                     

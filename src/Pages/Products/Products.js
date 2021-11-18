@@ -6,6 +6,7 @@ import { Typography } from '@mui/material';
 import Footer from '../Shared/Footer/Footer';
 import Navigation from '../Shared/Navigation/Navigation';
 import CustomerReview from '../Home/CustomerReview/CustomerReview';
+import OurGallery from '../Home/OurGallery/OurGallery';
 
 
 const Products = () => {
@@ -13,7 +14,7 @@ const Products = () => {
     const [products,setProducts] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/products')
+        fetch('https://shrouded-taiga-61011.herokuapp.com/products')
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])
@@ -40,6 +41,7 @@ const Products = () => {
       </Box>
       </Box>
       <CustomerReview></CustomerReview>
+      <OurGallery></OurGallery>
       <Footer></Footer>
 
       </>

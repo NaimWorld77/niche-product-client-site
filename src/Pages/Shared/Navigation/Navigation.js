@@ -12,7 +12,11 @@ import useAuth from '../../../Hooks/useAuth';
 const Navigation = () => {
 
     const {user,logOut} = useAuth();
+     
 
+     
+
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="fixed">
@@ -29,6 +33,7 @@ const Navigation = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Luxary Gold
           </Typography>
+          
           <Link style={{textDecoration:'none',color:'white'}} to="/home">
           <Button color="inherit">Home</Button>
           </Link>
@@ -41,7 +46,7 @@ const Navigation = () => {
           <Link style={{textDecoration:'none',color:'white'}} to="/customerservice">
           <Button color="inherit">Customer Service</Button>
           </Link>
-          <Typography variant="h5">{user?.name}</Typography>
+          <Typography style={{color:'white',color:'tomato'}}>{user?.displayName}</Typography>
           { 
           user?.email ?
           
@@ -58,6 +63,7 @@ const Navigation = () => {
             <Link style={{textDecoration:'none',color:'white'}} to="/login">
           <Button color="inherit">Login</Button>
           </Link>}
+          
         </Toolbar>
       </AppBar>
     </Box>
@@ -65,3 +71,5 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+

@@ -6,10 +6,13 @@ const ManageOrder = () => {
     const [orders,setOrders] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/buyerinfo')
+        fetch('https://shrouded-taiga-61011.herokuapp.com/allorders')
         .then(res=>res.json())
-        .then(data=>setOrders(data))
+        .then(data=>{
+            console.log(data);
+            setOrders(data)})
     },[])
+    
 
     return (
         <div>

@@ -15,7 +15,7 @@ const MyOrder = () => {
 
 
     useEffect(()=>{
-        const url =`http://localhost:5000/buyerinfo?email=${user.email}`
+        const url =`https://shrouded-taiga-61011.herokuapp.com/buyerinfo?email=${user.email}`
         fetch(url)
         .then(res=>res.json())
         .then(data=>setOrders(data))

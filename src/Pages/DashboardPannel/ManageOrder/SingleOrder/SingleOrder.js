@@ -14,7 +14,7 @@ const SingleOrder = ({order}) => {
 
 
     const handleDelete = id =>{
-        const url =`http://localhost:5000/buyerinfo/${id}`
+        const url =`https://shrouded-taiga-61011.herokuapp.com/buyerinfo/${id}`
         fetch(url,{
             
             method:'DELETE',

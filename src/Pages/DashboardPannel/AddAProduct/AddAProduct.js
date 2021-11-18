@@ -39,7 +39,7 @@ const AddAProduct = () => {
        
 
         //SEND TO THE SERVER 
-        fetch('http://localhost:5000/products',{
+        fetch('https://shrouded-taiga-61011.herokuapp.com/products',{
 
                 method:'POST',
                 headers:{

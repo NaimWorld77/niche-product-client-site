@@ -5,6 +5,7 @@ import AuthProvider from './Context/AuthProvider/AuthProvider';
 import DashBoard from './Pages/DashBoard/DashBoard';
 import CustomerService from './Pages/Home/CustomerService/CustomerService';
 import Home from './Pages/Home/Home/Home';
+import OurGallery from './Pages/Home/OurGallery/OurGallery';
 import Login from './Pages/Login/Login';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Products from './Pages/Products/Products';
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/products">
             <Products></Products>
+          </Route>
+          <Route path="/ourgallary">
+            <OurGallery></OurGallery>
           </Route>
           <Route path="/product/:productKey">
             <ProductDetails></ProductDetails>

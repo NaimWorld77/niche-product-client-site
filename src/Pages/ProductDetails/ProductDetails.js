@@ -19,7 +19,7 @@ const ProductDetails = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/products')
+        fetch('https://shrouded-taiga-61011.herokuapp.com/products')
         .then(res=>res.json())
         .then(data=>setDetails(data))
     },[])

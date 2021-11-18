@@ -41,7 +41,7 @@ const Review = () => {
        
 
         //SEND TO THE SERVER 
-        fetch('http://localhost:5000/reviews',{
+        fetch('https://shrouded-taiga-61011.herokuapp.com/reviews',{
 
                 method:'POST',
                 headers:{
